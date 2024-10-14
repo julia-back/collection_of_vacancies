@@ -1,8 +1,10 @@
+from typing import Any, Iterable
+
 from src.vacancies import Vacancy
-from config import DATA_PATH
 
 
-def clear_hh_data_by_keys(data_list: list):
+def clear_hh_data_by_keys(data_list: list[dict[str, Any]]) -> Iterable[Iterable[Any]]:
+    """Функция преобразования вакансий с hh.ru словаря по ключам, соответствующим атрибутам класса Vacancy"""
     list_dicts_vacancy = []
     for vacancy_dict in data_list:
         id_ = vacancy_dict.get("id")
@@ -24,14 +26,15 @@ def clear_hh_data_by_keys(data_list: list):
         responsibility = vacancy_dict.get("snippet").get("responsibility")
         experience = vacancy_dict.get("experience").get("name")
         dict_vacancy = {"id_": id_, "name": name, "area": area, "salary_from": salary_from,
-                        "salary_to": salary_to,"currency": currency, "address": address,
+                        "salary_to": salary_to, "currency": currency, "address": address,
                         "alternate_url": alternate_url, "responsibility": responsibility,
                         "experience": experience}
         list_dicts_vacancy.append(dict_vacancy)
     return list_dicts_vacancy
 
 
-def get_obj_vacancy_from_dicts(list_of_dict: list[dict]):
+def get_obj_vacancy_from_dicts(list_of_dict: Iterable) -> Iterable[Vacancy]:
+    """Функция получения списка объектов Vacancy из списка словарей с ключами, соответствующими атрибутам класса"""
     list_of_obj = []
     for vacancy in list_of_dict:
         obj = Vacancy(**vacancy)
@@ -39,7 +42,8 @@ def get_obj_vacancy_from_dicts(list_of_dict: list[dict]):
     return list_of_obj
 
 
-def filter_obj_vacancy_by_currency(list_obj: list[Vacancy], currency="RUR"):
+def filter_obj_vacancy_by_currency(list_obj: Iterable[Vacancy], currency: str = "RUR") -> Iterable[Vacancy]:
+    """Функия фильтрации списка объектов Vacancy по валюте"""
     clear_list = []
     for vacancy in list_obj:
         if vacancy.currency.upper() == currency.upper():
@@ -47,7 +51,8 @@ def filter_obj_vacancy_by_currency(list_obj: list[Vacancy], currency="RUR"):
     return clear_list
 
 
-def filter_obj_vacancy_by_experience(list_obj: list[Vacancy], experience: str = None):
+def filter_obj_vacancy_by_experience(list_obj: Iterable[Vacancy], experience: str) -> Iterable[Vacancy]:
+    """Функия фильтрации списка объектов Vacancy по опыту"""
     clear_list = []
     for vacancy in list_obj:
         if vacancy.experience.lower() == experience.lower():
