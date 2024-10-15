@@ -9,13 +9,13 @@ import json
 
 
 def main():
-    user_input = input("Введите ключевые слова для поиска вакансий через пробел\n")
-    print("Готовим для Вас вакансии...")
-    vacancies = SearchVacanciesHH(user_input).get_vacancies()
-    vacancies = clear_hh_data_by_keys(vacancies)
-    file_appender = AppenderInJSON()
-    file_appender.clear_file()
-    file_appender.append_in_file(vacancies)
+    # user_input = input("Введите ключевые слова для поиска вакансий через пробел\n")
+    # print("Готовим для Вас вакансии...")
+    # vacancies = SearchVacanciesHH(user_input).get_vacancies()
+    # vacancies = clear_hh_data_by_keys(vacancies)
+    # file_appender = AppenderInJSON()
+    # file_appender.clear_file()
+    # file_appender.append_in_file(vacancies)
 
     file_reader = ReaderJSON()
     vacancies = file_reader.read_file()
@@ -46,18 +46,12 @@ def main():
     user_input = input("Введите количество вакансий для вывода в топ по зарплате\n")
     vacancies = sorted(vacancies, key=lambda x: (x.salary_to, x.salary_from), reverse=True)
     for i in range(int(user_input)):
-        print(vacancies[i].name, vacancies[i].salary_from, "-", vacancies[i].salary_to, vacancies[i].currency)
-        print(vacancies[i].responsibility)
-        print(vacancies[i].alternate_url, end="\n\n")
+        print(vacancies[i])
 
     user_input = input("Просмотреть все вакансии? да/нет\n")
     if user_input.lower() == "да":
         for vacancy in vacancies:
-            print(vacancy.name, vacancy.salary_from, "-", vacancy.salary_to, vacancy.currency)
-            print(f"Адрес / локация: {vacancy.address if vacancy.address != "NoAddress" else vacancy.area}")
-            print(f"Опыт: {vacancy.experience}")
-            print(vacancy.responsibility)
-            print(f"ID вакансии: {vacancy.id_}. Ссылка на вакансию: {vacancy.alternate_url}", end="\n\n")
+            print(vacancy)
 
 
 if __name__ == "__main__":

@@ -26,6 +26,14 @@ class Vacancy:
         if self.__is_exclude():
             Vacancy.vacancies.append(self)
 
+    def __str__(self):
+        str_vacancy = (f"{self.name} {self.salary_from} - {self.salary_to} {self.currency}\n"
+                       f"Адрес / локация: {self.address if self.address != "NoAddress" else self.area}\n"
+                       f"Опыт: {self.experience}"
+                       f"{self.responsibility}\n"
+                       f"ID вакансии: {self.id_}. Ссылка на вакансию: {self.alternate_url}\n\n")
+        return str_vacancy
+
     def __eq__(self, other: Union[int | float | Self]) -> bool:
         """Метод для определния равенства по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
