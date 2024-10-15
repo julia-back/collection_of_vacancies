@@ -9,13 +9,13 @@ import json
 
 
 def main():
-    # user_input = input("Введите ключевые слова для поиска вакансий через пробел\n")
-    # print("Готовим для Вас вакансии...")
-    # vacancies = SearchVacanciesHH(user_input).get_vacancies()
-    # vacancies = clear_hh_data_by_keys(vacancies)
-    # file_appender = AppenderInJSON()
-    # file_appender.clear_file()
-    # file_appender.append_in_file(vacancies)
+    user_input = input("Введите ключевые слова для поиска вакансий через пробел\n")
+    print("Готовим для Вас вакансии...")
+    vacancies = SearchVacanciesHH(user_input).get_vacancies()
+    vacancies = clear_hh_data_by_keys(vacancies)
+    file_appender = AppenderInJSON()
+    file_appender.clear_file()
+    file_appender.append_in_file(vacancies)
 
     file_reader = ReaderJSON()
     vacancies = file_reader.read_file()

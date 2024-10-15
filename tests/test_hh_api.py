@@ -1,5 +1,6 @@
-from src.hh_api import SearchVacanciesHH
 from unittest.mock import patch
+
+from src.hh_api import SearchVacanciesHH
 
 
 @patch("requests.get")

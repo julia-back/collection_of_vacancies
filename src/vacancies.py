@@ -1,4 +1,5 @@
-from typing import Union, Self
+from re import sub
+from typing import Self, Union
 
 
 class Vacancy:
@@ -21,7 +22,8 @@ class Vacancy:
         self.currency = currency if currency is not None else "RUR"
         self.address = address if address is not None else "NoAddress"
         self.alternate_url = alternate_url
-        self.responsibility = responsibility
+        self.responsibility = sub("<.+>", "", responsibility)\
+            if responsibility is not None else responsibility
         self.experience = experience
         if self.__is_exclude():
             Vacancy.vacancies.append(self)
@@ -29,7 +31,7 @@ class Vacancy:
     def __str__(self):
         str_vacancy = (f"{self.name} {self.salary_from} - {self.salary_to} {self.currency}\n"
                        f"Адрес / локация: {self.address if self.address != "NoAddress" else self.area}\n"
-                       f"Опыт: {self.experience}"
+                       f"Опыт: {self.experience}\n"
                        f"{self.responsibility}\n"
                        f"ID вакансии: {self.id_}. Ссылка на вакансию: {self.alternate_url}\n\n")
         return str_vacancy
@@ -77,7 +79,7 @@ class Vacancy:
         cls.vacancies.remove(obj_for_del)
 
     @staticmethod
-    def __get_num_for_compare(other: Union[int | float | "Vacancy"]) -> int | float:
+    def __get_num_for_compare(other: int | float | object) -> int | float:
         """Приватный метод для получения числа для сравнения, принимает объект класса или число int/float"""
         if isinstance(other, (int, float)):
             other = other
