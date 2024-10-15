@@ -1,3 +1,6 @@
+from typing import Union, Self
+
+
 class Vacancy:
     """Класс для работы с вакансиями"""
 
@@ -23,31 +26,31 @@ class Vacancy:
         if self.__is_exclude():
             Vacancy.vacancies.append(self)
 
-    def __eq__(self, other: int | float | object) -> bool:
+    def __eq__(self, other: Union[int | float | Self]) -> bool:
         """Метод для определния равенства по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
         return self_num == other_num
 
-    def __lt__(self, other: int | float | object) -> bool:
+    def __lt__(self, other: Union[int | float | Self]) -> bool:
         """Метод для сравнения '<' по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
         return self_num < other_num
 
-    def __gt__(self, other: int | float | object) -> bool:
+    def __gt__(self, other: Union[int | float | Self]) -> bool:
         """Метод для сравнения '<' по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
         return self_num > other_num
 
-    def __le__(self, other: int | float | object) -> bool:
+    def __le__(self, other: Union[int | float | Self]) -> bool:
         """Метод для сравнения '<=' по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
         return self_num <= other_num
 
-    def __ge__(self, other: int | float | object) -> bool:
+    def __ge__(self, other: Union[int | float | Self]) -> bool:
         """Метод для сравнения '<=' по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
@@ -61,12 +64,12 @@ class Vacancy:
         return True
 
     @classmethod
-    def delite_vacancy(cls, obj_for_del: object) -> None:
+    def delite_vacancy(cls, obj_for_del: Self) -> None:
         """Метод удаления вакансии из общего списка вакансий"""
         cls.vacancies.remove(obj_for_del)
 
     @staticmethod
-    def __get_num_for_compare(other: int | float | object) -> int | float:
+    def __get_num_for_compare(other: Union[int | float | "Vacancy"]) -> int | float:
         """Приватный метод для получения числа для сравнения, принимает объект класса или число int/float"""
         if isinstance(other, (int, float)):
             other = other

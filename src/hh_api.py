@@ -16,7 +16,7 @@ class SearchVacanciesHH(GetVacanciesAPI):
         self.__url = "https://api.hh.ru/vacancies"
         self.__headers = {'User-Agent': 'HH-User-Agent'}
         keywords = keywords if keywords is not None else ""
-        self.__params: dict[str, int | str] = {"page": 0, "per_page": 100, "text": keywords}
+        self.__params: dict[str, str | int] = {"page": 0, "per_page": 100, "text": keywords}
         self.__status_code = None
         self.__vacancies: list[Any] = []
 

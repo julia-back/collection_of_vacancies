@@ -3,7 +3,7 @@ from typing import Any, Iterable
 from src.vacancies import Vacancy
 
 
-def clear_hh_data_by_keys(data_list: list[dict[str, Any]]) -> Iterable[Iterable[Any]]:
+def clear_hh_data_by_keys(data_list: Iterable[dict[Any, Any]]) -> Iterable[Iterable[Any]]:
     """Функция преобразования вакансий с hh.ru словаря по ключам, соответствующим атрибутам класса Vacancy"""
     list_dicts_vacancy = []
     for vacancy_dict in data_list:
