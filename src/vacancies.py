@@ -35,11 +35,23 @@ class Vacancy:
         self_num = self.__get_num_for_compare(self)
         return self_num < other_num
 
+    def __gt__(self, other: int | float | object) -> bool:
+        """Метод для сравнения '<' по атрибуту salary_from"""
+        other_num = self.__get_num_for_compare(other)
+        self_num = self.__get_num_for_compare(self)
+        return self_num > other_num
+
     def __le__(self, other: int | float | object) -> bool:
         """Метод для сравнения '<=' по атрибуту salary_from"""
         other_num = self.__get_num_for_compare(other)
         self_num = self.__get_num_for_compare(self)
         return self_num <= other_num
+
+    def __ge__(self, other: int | float | object) -> bool:
+        """Метод для сравнения '<=' по атрибуту salary_from"""
+        other_num = self.__get_num_for_compare(other)
+        self_num = self.__get_num_for_compare(self)
+        return self_num >= other_num
 
     def __is_exclude(self) -> bool:
         """Поиск дубликатов вакансии в общем списке вакансий"""
