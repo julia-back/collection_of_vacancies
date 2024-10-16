@@ -64,7 +64,7 @@ def test_get_obj_vacancy_from_dicts(vacancies_dicts_by_keys):
     assert vacancies_obj[0].alternate_url == "https://hh.ru/vacancy/108001774"
     assert vacancies_obj[0].responsibility == (
         "Разработка и поддержка backend части приложения на "
-        "<highlighttext>Python</highlighttext>. Работа с базами данных (например, "
+        "Python. Работа с базами данных (например, "
         "PostgreSQL, MongoDB). Написание чистого, эффективного и хорошо..."
     )
     assert vacancies_obj[0].experience == "Нет опыта"

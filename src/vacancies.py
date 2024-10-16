@@ -22,7 +22,7 @@ class Vacancy:
         self.currency = currency if currency is not None else "RUR"
         self.address = address if address is not None else "NoAddress"
         self.alternate_url = alternate_url
-        self.responsibility = sub("<.+>", "", responsibility)\
+        self.responsibility = sub(r"<([a-z]|/)+>", "", responsibility)\
             if responsibility is not None else responsibility
         self.experience = experience
         if self.__is_exclude():
